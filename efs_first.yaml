@@ -89,10 +89,8 @@ Parameters:
     Description: Which SecurityGroup will be allowed to access Mount Targets for the FileSystem
 
 
-<<<<<<< HEAD
+
 Metadata:
-=======
->>>>>>> f942c6690abc855e5a009ea7cf27f8c7a0751f04
   AWS::CloudFormation::Interface:
     ParameterGroups:
       -
@@ -143,13 +141,11 @@ Metadata:
 
 Conditions:
 
-<<<<<<< HEAD
+
   # FileSystem Conditions
   hasFsTags: 
     !Not [!Equals [!Ref FileSystemName, " "]]
   
-=======
->>>>>>> f942c6690abc855e5a009ea7cf27f8c7a0751f04
   isEncrypted:
     !Equals [!Ref Encryption, true]
 
@@ -260,9 +256,7 @@ Outputs:
     Value: !Ref MountTarget3
     Export: 
       Name: !Sub 
-<<<<<<< HEAD
-        - '${AWS::StackName}${FileSystemName}MountTarget23'
-        - { FileSystemName: !If [hasFsTags, !Ref FileSystemName, "FileSystem"] }
-=======
+
         - '${AWS::StackName}${FileSystemName}MountTarget3'
->>>>>>> f942c6690abc855e5a009ea7cf27f8c7a0751f04
+        - { FileSystemName: !If [hasFsTags, !Ref FileSystemName, "FileSystem"] 
+      
