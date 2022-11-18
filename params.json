@@ -1,0 +1,13 @@
+[
+    "Encryption=true",
+    "FileSystemName=IngenuoAiTestFS",
+    "PerformanceMode=generalPurpose",
+    "ThroughputMode=bursting",
+    "KmsKeyId=arn:aws:kms:us-east-2:120446144941:key/37354adf-b3e3-4ddb-901d-ae5b8af90d33",
+    "VpcId=vpc-065ec115a11ac60e9",
+    "MountTarget1Subnet=subnet-0fe4b2bca005d6534",
+    "MountTarget2Subnet=subnet-0035fb1b12a6f308a",
+    "MountTarget3Subnet=subnet-0000000000000000",
+    "FileSharePort=2049",
+    "OriginSecurityGroup=sg-0b9222ed6d755f8cc"
+]

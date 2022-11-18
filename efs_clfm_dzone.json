@@ -1,0 +1,152 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+
+    "Description": "This cloudformation will create encryped Elastic File System.",
+
+    "Parameters": {
+
+    "SystemName" : {
+
+    "Type": "String",
+
+    "Description" : "System for which this cloudformation is created.",
+
+    "Default" : "myLinuxSystem"
+
+    },
+    "Environment" : {
+    "Type": "String",
+
+    "Description" : "Environment for which this cloudformation is getting created",
+
+    "Default" : "dev"
+
+        },  
+
+    "RegionName" : {
+    "Type": "String",
+
+    "Description" : "Region Name in which resources are to be created.",
+
+    "Default" : "eu"
+
+        },
+    "BackbonePrivateSubnetAZa": {
+    "Type": "String",
+
+    "Description" : "Private subnet in availability zone A"
+
+        },
+
+    "BackbonePrivateSubnetAZb": {
+
+    "Type": "String",
+
+    "Description" : "Private subnet in availability zone B"
+
+        },
+    "EC2InstanceLinkedEFSFileSystemTagName": {
+
+    "Type": "String",
+
+    "Description": "Tag name of Elastic File System.",
+    "Default": "elastic-file-system"
+    },
+
+    "FileSecurityGroup": {
+
+    "Type": "String",
+
+    "Description": "File System Security Group"
+    
+        }
+    
+    },
+    
+    "Resources": {
+    
+        "EFSFileSystem": {
+    
+        "Type" : "AWS::EFS::FileSystem",
+    
+        "Properties" : {
+    
+            "FileSystemTags": [
+    
+        {
+    
+                "Key": "Name",
+    
+                "Value": { "Fn::Join": [ "-", [ { "Ref": "SystemName" }, { "Ref": "Environment" }, { "Ref": "RegionName" }, { "Ref": "EC2InstanceLinkedEFSFileSystemTagName" } ] ] }
+    
+        }
+    
+        ]
+    
+        }
+    
+        },
+    
+        "EFSMountTargetAZa": {
+    
+        "Type": "AWS::EFS::MountTarget",
+    
+        "Properties": {
+    
+            "FileSystemId": {"Ref": "EFSFileSystem"},
+    
+            "SubnetId": {"Ref": "BackbonePrivateSubnetAZa"},
+    
+            "SecurityGroups": [{"Ref": "FileSecurityGroup"}]
+    
+        }
+    
+        },
+    
+        "EFSMountTargetAZb": {
+    
+        "Type": "AWS::EFS::MountTarget",
+    
+        "Properties": {
+    
+        "FileSystemId": {"Ref": "EFSFileSystem"},
+    
+        "SubnetId": {"Ref": "BackbonePrivateSubnetAZb"},
+    
+        "SecurityGroups": [{"Ref": "FileSecurityGroup"}]
+    
+            }
+    
+        }   
+    
+            },
+    
+    "Outputs" : {
+    
+        "ElasticFileSystem" : {
+    
+        "Description": "Elastic file system.",
+    
+        "Value" : {"Ref": "EFSFileSystem"}
+    
+                },
+    
+    "EFSMountTargetAZaId" : {
+    
+    "Description": "EFS mount target Id in availability zone A.",
+    
+    "Value" : {"Ref": "EFSMountTargetAZa"}
+    
+        },
+    
+    "EFSMountTargetAZbId" : {
+    
+    "Description": "EFS mount target Id in availability zone B.",
+    
+    "Value" : {"Ref": "EFSMountTargetAZb"}
+    
+        }
+    
+    }
+    }
+    
