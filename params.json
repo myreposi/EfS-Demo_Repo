@@ -10,4 +10,8 @@
     "MountTarget3Subnet=subnet-0000000000000000",
     "FileSharePort=2049",
     "OriginSecurityGroup=sg-0b9222ed6d755f8cc"
+<<<<<<< HEAD
 ]
+=======
+]
+>>>>>>> f942c6690abc855e5a009ea7cf27f8c7a0751f04
