@@ -15,11 +15,8 @@ Parameters:
   FileSystemName:
     Type: String
     Description: Name for tagging the EFS FileSystem (Default - CloudFormationStackNameFileSystem)
-<<<<<<< HEAD
-    Default: " "
-=======
     Default: "FileSystemName"
->>>>>>> f942c6690abc855e5a009ea7cf27f8c7a0751f04
+
 
   PerformanceMode:
     Type: String
